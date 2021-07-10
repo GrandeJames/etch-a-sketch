@@ -11,9 +11,42 @@
     </head>
 
     <body>
+
         <header>
             <h1>Etch-A-Sketch</h1>
         </header>
+
+        <main>
+            <div class="sketchpad">
+                sketchpad
+            </div>
+        </main>
+
+        <div class="options">options</div>
+
+                <!--
+            mobile first:
+                use grid-template-areas to divide the header, sketchpad, and options
+                    mobile:
+                        "header"
+                        "sketchpad"
+                        "options"
+                    desktop:
+                        "header header"
+                        "options sketchpad"
+                    use media queries to change the template
+                it'll be top-bottom
+                    heading
+                    sketchpad
+                        css display: grid
+                        create columns and rows (grid-template-rows)
+                            use fractions for the sizing? like 1fr
+                            use repeat function 
+                        when clicking down change the "pixel"
+                    otions
+                        clear and size
+                        clear, color (initally black), and rainbow option
+        -->
 
         <script src="script.js"></script>
     </body>

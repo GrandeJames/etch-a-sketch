@@ -1,0 +1,42 @@
+/* Layout */
+body {
+    margin: 0;
+
+    display: grid;
+    grid-template-areas: 
+            "header"
+            "main"
+            "options";
+
+    grid-template-rows: auto 85vh auto;
+}
+
+@media (min-width: 550px) {
+    body {
+        grid-template-areas: 
+            "header header header"
+            "options main main"
+    }
+}
+
+
+header {
+    grid-area: header;
+    
+    background-color: yellow;
+}
+
+main {
+    grid-area: main;
+
+    background-color: deeppink;
+}
+
+.options {
+    grid-area: options;
+
+    background-color: aqua;
+}
+
+/* Aesthetics */
+
