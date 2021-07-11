@@ -1,53 +1,49 @@
 /* Layout */
-* {
-    margin: 0;
-    padding: 0;
-}
+
 body {
-    display: grid;
-    width: 100vw;
-    height: 100vh;
-    grid-template-areas: 
-            "header"
-            "main"
-            "options"
-            "footer";
-    grid-template-rows: 15vh 60vh 10vh auto;
-    grid-template-columns: 100vw;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
 }
-
-@media (min-width: 550px) {
-    body {
-        grid-template-areas: "header header header"
-                             "options main main"
-                             "footer footer footer";
-        grid-template-rows: 15vh 70vh auto;
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-}
-
 
 header {
-    grid-area: header;
-    
-    background-color: yellow;
-}
-
-.options {
-    grid-area: options;
-
-    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    width: 100vw;
+    background-color: rgba(255, 0, 0, 0.104);
 }
 
 main {
-    grid-area: main;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 
-    background-color: deeppink;
+    
+    height: 100vh;
+    background-color: white;;
 }
 
-footer {
-    grid-area: footer;
-
-    background-color: coral;
+.sketchpad {
+    display: grid;
+    width: 300px;
+    height: 300px;
+    box-shadow: 0px 0px 20px 3px  rgb(255, 0, 0);
+    margin: 30px 0 30px 0;
 }
 
+.options {
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    height: 30px;
+    width: 100px;
+    background-color: white;
+    border: 0.1px solid black;
+    border-radius: 2px;
+}
