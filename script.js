@@ -1,3 +1,13 @@
+start();
+
+function start() {
+    const DEFAULT_SIZE = 10;
+
+    addCellsToSketchpad(DEFAULT_SIZE);
+    addCellHoverListener();
+    changeSize(DEFAULT_SIZE);
+    clear();
+}
 
 function addCellsToSketchpad(size) {
     const sketchpad = document.querySelector(".sketchpad");
@@ -6,11 +16,9 @@ function addCellsToSketchpad(size) {
     sketchpad.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
 
     for (let i = 0; i < (size * size); i++) {
+        
         const cell = document.createElement("div");
-
         cell.className = "cell"
-        cell.style.border = "0.1px solid black";
-        cell.style.backgroundColor = "#fff";
 
         sketchpad.appendChild(cell);
     }
@@ -35,13 +43,13 @@ function removeCells() {
     });
 }
 
-function changeSize() {
+function changeSize(defaultSize) {
     const button = document.querySelector("#button-size");
 
     button.addEventListener("click", () => {
         let size = 0;
         while (size < 1 || size > 100) {
-            size = prompt("Size?", 16);
+            size = prompt("Size?", defaultSize);
             if (size == null) {
                 return;
             }
@@ -52,10 +60,19 @@ function changeSize() {
     })
 }
 
+function resetCells() {
+    const cells = document.querySelectorAll(".cell");
+
+    cells.forEach(cell => cell.style.backgroundColor = "#fff");
+}
+
+function clear() {
+    console.log("test");
+    const button = document.querySelector("#clear")
+
+    button.addEventListener("click", () => resetCells());
+}
+
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
-
-addCellsToSketchpad(16);
-changeSize();
-addCellHoverListener();
