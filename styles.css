@@ -27,6 +27,7 @@ main {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    margin-top: 5vh;
 }
 
 .sketchpad {
@@ -50,7 +51,13 @@ button {
     border: 0.1px solid var(--color-secondary);
     border-radius: 2px;
     color: var(--color-secondary);
-    margin: 5px 0 5px 0;
+    margin: 5px 5px 5px 5px;
+}
+
+button:hover {
+    box-shadow: 0px 0px 2px 5px  rgba(0, 0, 0, 0.111);
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
 }
 
 h1 {
@@ -62,4 +69,16 @@ h1 {
 .cell {
     border: 0.1px solid rgb(255, 212, 212);
     background-color: var(--color-primary);
+}
+
+.colors {
+    display: flex;
+    flex-direction: row;
+}
+.color-button {
+    width: 25%;
+}
+
+.activated {
+    box-shadow: 0px 0px 2px 5px  rgba(0, 0, 0, 0.111);
 }
