@@ -1,16 +1,23 @@
 start();
 
 function start() {
-    const DEFAULT_SIZE = 4;
+    const DEFAULT_SIZE = 10;
 
     addCellsToSketchpad(DEFAULT_SIZE);
 
     setCellColorListener(() => rainbowColor());
+    toggleColorButton(document.querySelector("#rainbow"));
 
     setColorButtonListener();
     setClearListener();
     setChangeSizeListener(DEFAULT_SIZE);
 }
+
+function toggleColorButton(colorButton) {
+    colorButton.classList.toggle("activated");
+}
+
+
 
 function addCellsToSketchpad(size) {
     const sketchpad = document.querySelector(".sketchpad");

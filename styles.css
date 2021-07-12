@@ -1,8 +1,9 @@
 /* Layout */
 
 :root {
-    --color-primary: #fff;
-    --color-secondary: rgba(184, 159, 17);
+    --color-primary: rgba(0, 0, 0, 0.85);
+    --color-secondary: rgb(255, 255, 0);
+    --color-accent: white;
 }
 
 body {
@@ -34,8 +35,7 @@ main {
     display: grid;
     width: 275px;
     height: 275px;
-    background-color: rgb(255, 0, 0);
-    box-shadow: 0px 0px 20px 3px  rgb(255, 0, 0);
+    box-shadow: 0px 0px 20px 3px var(--color-secondary);
     margin: 30px 0 30px 0;
 }
 
@@ -68,7 +68,7 @@ h1 {
 
 .cell {
     border: 0.1px solid rgb(255, 212, 212);
-    background-color: var(--color-primary);
+    background-color: #fff;
 }
 
 .colors {
@@ -80,5 +80,7 @@ h1 {
 }
 
 .activated {
-    box-shadow: 0px 0px 2px 5px  rgba(0, 0, 0, 0.111);
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    box-shadow: 0px 0px 5px 5px rgba(255, 255, 0, 0.3);
 }
