@@ -7,6 +7,8 @@ function start() {
 
     setCellColorListener(() => rainbowColor());
     toggleColorButton(document.querySelector("#rainbow"));
+    const colorsDiv = document.querySelector(".colors");
+    colorsDiv.id = "rainbow";
 
     setColorButtonListener();
     setClearListener();
@@ -60,6 +62,7 @@ function getRandomInt(max) {
 
 function setColorButtonListener() {
     const colorButtons = document.querySelectorAll(".color-button");
+    const colorsDiv = document.querySelector(".colors");
 
     colorButtons.forEach(colorButton => {
         colorButton.addEventListener("click", () => {
@@ -67,6 +70,8 @@ function setColorButtonListener() {
             if (!(colorButton.classList.contains("activated"))) {
                 turnOffActivatedButton();
                 colorButton.classList.toggle("activated");
+
+                colorsDiv.id = colorButton.id;
             }
 
             if (colorButton.id === "black") {
@@ -105,6 +110,7 @@ function clearCells() {
 
 function setChangeSizeListener(defaultSize) {
     const button = document.querySelector("#button-size");
+    const colorsDiv = document.querySelector(".colors");
 
     button.addEventListener("click", () => {
         let size = 0;
@@ -120,7 +126,19 @@ function setChangeSizeListener(defaultSize) {
         // TODO keep original color
         // check which color button is activated
         // set the color to the activate button
-        setCellColorListener(() => rainbowColor());
+        //
+        // use the colorsDiv and add an id of the color activated
+        // if class is black set to black
+        // if rainbow set to rainbow
+        // if erase set to erase
+
+        if (colorsDiv.id === "rainbow") {
+            setCellColorListener(() => rainbowColor());
+        } else if (colorsDiv.id === "black") {
+            setCellColorListener(() => "black");
+        } else if (colorsDiv.id === "eraser") {
+            setCellColorListener(() => "#fff");
+        }
     })
 }
 
