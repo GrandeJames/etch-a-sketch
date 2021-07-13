@@ -6,20 +6,14 @@ function start() {
     addCellsToSketchpad(DEFAULT_SIZE);
 
     setCellColorListener(() => rainbowColor());
-    toggleColorButton(document.querySelector("#rainbow"));
-    const colorsDiv = document.querySelector(".colors");
-    colorsDiv.id = "rainbow";
+
+    document.querySelector("#rainbow").classList.toggle("activated");
+    document.querySelector(".colors").id = "rainbow";
 
     setColorButtonListener();
     setClearListener();
     setChangeSizeListener(DEFAULT_SIZE);
 }
-
-function toggleColorButton(colorButton) {
-    colorButton.classList.toggle("activated");
-}
-
-
 
 function addCellsToSketchpad(size) {
     const sketchpad = document.querySelector(".sketchpad");
@@ -36,20 +30,18 @@ function addCellsToSketchpad(size) {
     }
 }
 
-
 function setCellColorListener(color) {
     const cells = document.querySelectorAll(".cell");
 
     cells.forEach(cell => {
         cell.addEventListener("mouseover", () => {
 
-            // Color needs to be a function because we want rainbow color to
+            // Color is a function because we want rainbow color to
             // always change.
             cell.style.backgroundColor = color();
         })
     });
 }
-
 
 function rainbowColor() {
     return `rgb(${getRandomInt(255)}, ${getRandomInt(255)}, ${getRandomInt(255)})`;
@@ -58,7 +50,6 @@ function rainbowColor() {
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
-
 
 function setColorButtonListener() {
     const colorButtons = document.querySelectorAll(".color-button");
@@ -70,17 +61,10 @@ function setColorButtonListener() {
             if (!(colorButton.classList.contains("activated"))) {
                 turnOffActivatedButton();
                 colorButton.classList.toggle("activated");
-
                 colorsDiv.id = colorButton.id;
             }
 
-            if (colorButton.id === "black") {
-                setCellColorListener(() => "black");
-            } else if (colorButton.id === "rainbow") {
-                setCellColorListener(() => rainbowColor());
-            } else if (colorButton.id === "eraser") {
-                setCellColorListener(() => "#fff");
-            }
+            setElementColorId(colorButton);
         });
     });
 }
@@ -95,6 +79,15 @@ function turnOffActivatedButton() {
     });
 }
 
+function setElementColorId(element) {
+    if (element.id === "rainbow") {
+        setCellColorListener(() => rainbowColor());
+    } else if (element.id === "black") {
+        setCellColorListener(() => "black");
+    } else if (element.id === "eraser") {
+        setCellColorListener(() => "#fff");
+    }
+}
 
 function setClearListener() {
     const button = document.querySelector("#clear")
@@ -106,7 +99,6 @@ function clearCells() {
 
     cells.forEach(cell => cell.style.backgroundColor = "#fff");
 }
-
 
 function setChangeSizeListener(defaultSize) {
     const button = document.querySelector("#button-size");
@@ -123,23 +115,8 @@ function setChangeSizeListener(defaultSize) {
         removeCells();
         addCellsToSketchpad(size);
 
-        // TODO keep original color
-        // check which color button is activated
-        // set the color to the activate button
-        //
-        // use the colorsDiv and add an id of the color activated
-        // if class is black set to black
-        // if rainbow set to rainbow
-        // if erase set to erase
-
-        if (colorsDiv.id === "rainbow") {
-            setCellColorListener(() => rainbowColor());
-        } else if (colorsDiv.id === "black") {
-            setCellColorListener(() => "black");
-        } else if (colorsDiv.id === "eraser") {
-            setCellColorListener(() => "#fff");
-        }
-    })
+        setElementColorId(colorsDiv);
+    });
 }
 
 function removeCells() {
@@ -150,3 +127,6 @@ function removeCells() {
         sketchpad.removeChild(cell);
     });
 }
+
+// TODO: choose custom color button, responsiveness, click and hover to sketch,
+// add fonts, choose grid size easier, toggle grid (borders).
